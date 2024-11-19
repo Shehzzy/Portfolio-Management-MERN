@@ -1,27 +1,26 @@
-// AdminPage.js
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 
 function AdminPage() {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAdminData = async () => {
       const token = localStorage.getItem('jwt_token');
       if (!token) {
-        history.push('/login');
+        navigate('/login');
         return;
       }
 
       try {
-        const decoded = jwt_decode(token);
+        const decoded = jwtDecode(token);  // Decoding the token
         if (decoded.role !== 'admin') {
           setError('You do not have admin access');
-          history.push('/profile');
+          navigate('/profile');
           return;
         }
 
@@ -31,11 +30,11 @@ function AdminPage() {
         setData(response.data);
       } catch (err) {
         setError('You are not authorized to view this page');
-        history.push('/login');
+        navigate('/login');
       }
     };
     fetchAdminData();
-  }, [history]);
+  }, [navigate]);  // Make sure to use `navigate` as dependency
 
   return (
     <div>

@@ -1,35 +1,37 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getUserData = async () => {
       const token = localStorage.getItem("jwt_token");
       if (!token) {
-        history.push("/login");
+        navigate("/login");
         return;
       }
 
       try {
-        const response = await axios.get("http://localhost:3000/api/profile", {
-          headers: { Authorization: `Bearer ${token}` },
+        const response = await axios.get("http://localhost:3000/api/auth/user", {
+          headers: { Authorization: `Bearer ${token}` }
         });
-
-        setUser = response.data;
+        setUser(response.data);
       } catch (err) {
+        console.error('Error fetching user data:', err.response?.data || err.message); // Log the error response from the backend
         setError("You are not authorized to view this page");
-        history.push("/login");
-      }
+        navigate("/login");
+      }   
+      
     };
 
     getUserData();
-  }, [history]);
-  
-  eturn (
+  }, [navigate]);
+
+  return (
     <div>
       <h2>Profile Page</h2>
       {error && <p>{error}</p>}
@@ -38,7 +40,7 @@ function ProfilePage() {
           <p>Email: {user.email}</p>
           <button onClick={() => {
             localStorage.removeItem('jwt_token');
-            history.push('/login');
+            navigate('/login');
           }}>Logout</button>
         </div>
       ) : (

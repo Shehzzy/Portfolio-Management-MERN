@@ -1,13 +1,19 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var cors = require('cors');
 require('dotenv').config();
 require('./utils/connection.js')
 var authRouter = require('./Routes/auth-router.js')
 app.use(bodyParser.json());
-app.use(cors());
 app.use(express.json());
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:5173',  
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+
 
 app.use("/api/auth", authRouter);
 
