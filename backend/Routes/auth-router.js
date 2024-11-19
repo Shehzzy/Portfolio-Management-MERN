@@ -8,13 +8,9 @@ router.post('/register', authController.register);
 router.post('/login', authController.login);
 
 // Admin-only route
-router.get('/admin', authenticateJWT, authorizeRole('admin'), (req, res) => {
-  res.send('Welcome, Admin!');
-});
+router.get('/admin', authenticateJWT, authorizeRole('admin'), (authController.admin));
 
 // User route (available to any logged-in user)
-router.get('/user', authenticateJWT, (req, res) => {
-  res.send('Welcome, User!');
-});
+router.get('/user', authenticateJWT, authController.simpleUser);
 
 module.exports = router;

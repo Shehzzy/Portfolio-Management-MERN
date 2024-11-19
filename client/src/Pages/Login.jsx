@@ -9,8 +9,8 @@
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
-      e.preventDefault(); // Ensure the form doesn't reload the page
-      console.log("Attempting login with:", { email, password });  // Debugging: Check values before making the request
+      e.preventDefault(); 
+      console.log("Attempting login with:", { email, password }); 
       
       try {
         const response = await axios.post(

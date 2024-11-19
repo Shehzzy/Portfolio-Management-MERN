@@ -37,7 +37,7 @@ function ProfilePage() {
       {error && <p>{error}</p>}
       {user ? (
         <div>
-          <p>Email: {user.email}</p>
+          <p>Email: {user.userData.email}</p>
           <button onClick={() => {
             localStorage.removeItem('jwt_token');
             navigate('/login');

@@ -24,7 +24,7 @@ function AdminPage() {
           return;
         }
 
-        const response = await axios.get('/api/admin', {
+        const response = await axios.get("http://localhost:3000/api/auth/admin", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setData(response.data);
@@ -42,7 +42,7 @@ function AdminPage() {
       {error && <p>{error}</p>}
       {data ? (
         <div>
-          <p>Admin data: {data}</p>
+          <p>Admin data: {data.adminData.email}</p>
         </div>
       ) : (
         <p>Loading...</p>
