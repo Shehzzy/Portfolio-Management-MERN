@@ -8,7 +8,6 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>React Authentication</h1>
         <Routes> 
           <Route path="/login" element={<LoginPage />} /> 
           <Route path="/profile" element={<ProfilePage />} />

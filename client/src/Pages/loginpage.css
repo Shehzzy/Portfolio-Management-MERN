@@ -1,0 +1,28 @@
+
+h3{
+    color: mediumslateblue;
+}
+.login-box{
+    height: 500px;
+    width: 400px;
+    border:10px solid mediumslateblue;
+    border-radius: 20px;
+}
+.login-box label{
+font-size: 20px;
+}
+.login-box input{
+    border-radius: 10px;
+    border: 1px solid mediumpurple;
+    height: 35px;
+    width:240px;
+}
+
+.login-group{
+    padding-top: 15px;
+}
+
+.login-error{
+    color:crimson;
+    font-size:18px;
+}
