@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    background-color: mediumslateblue;
+    height:100vh
+}
+
+h3 {
+    color: mediumslateblue;
+    font-weight: bold;
+}
+
+.roww>* {
+    gap: 0px;
+    padding-left: 0px;
+
+}
+
+.login-box {
+    background-color: #fff;
+    height: 500px;
+    width: 400px;
+    /* border:10px solid mediumslateblue; */
+    /* border-radius: 20px; */
+}
+
+.login-box label {
+    font-size: 20px;
+}
+
+.login-box input {
+    border-radius: 10px;
+    border: 1px solid mediumpurple;
+    height: 35px;
+    width: 240px;
+}
+
+.login-group {
+    padding-top: 15px;
+}
+
+.login-error {
+    color: crimson;
+    font-size: 18px;
+}
+
+.login-2 {
+    background-image: url('pexels-didsss-3029545.jpg');
+    background-size: cover;
+    width: 400px;
+    height: 500px;
+}
+
+.roww {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Optional: adds a soft shadow */
+}
+
+.btn input {
+    background-color: mediumslateblue;
+    color: #fff;
+    font-weight: bold;
+    transition-duration: 1s;
+
+}
+
+.btn input:hover {
+    background-color: mediumturquoise;
+}
+
+
+@media (max-width: 768px) {
+    .login-box {
+        order: 2;
+        /* Switch position to second */
+    }
+
+    .login-2 {
+        display: none;
+    }
+}

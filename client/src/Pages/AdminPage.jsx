@@ -34,7 +34,7 @@ function AdminPage() {
       }
     };
     fetchAdminData();
-  }, [navigate]);  // Make sure to use `navigate` as dependency
+  }, [navigate]);  
 
   return (
     <div>

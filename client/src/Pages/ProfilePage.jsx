@@ -7,29 +7,29 @@ function ProfilePage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getUserData = async () => {
-      const token = localStorage.getItem("jwt_token");
-      if (!token) {
-        navigate("/login");
-        return;
-      }
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     const token = localStorage.getItem("jwt_token");
+  //     if (!token) {
+  //       navigate("/login");
+  //       return;
+  //     }
 
-      try {
-        const response = await axios.get("http://localhost:3000/api/auth/user", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setUser(response.data);
-      } catch (err) {
-        console.error('Error fetching user data:', err.response?.data || err.message); // Log the error response from the backend
-        setError("You are not authorized to view this page");
-        navigate("/login");
-      }   
+  //     try {
+  //       const response = await axios.get("http://localhost:3000/api/auth/user", {
+  //         headers: { Authorization: `Bearer ${token}` }
+  //       });
+  //       setUser(response.data);
+  //     } catch (err) {
+  //       console.error('Error fetching user data:', err.response?.data || err.message); // Log the error response from the backend
+  //       setError("You are not authorized to view this page");
+  //       navigate("/login");
+  //     }   
       
-    };
+  //   };
 
-    getUserData();
-  }, [navigate]);
+  //   getUserData();
+  // }, [navigate]);
 
   return (
     <div>

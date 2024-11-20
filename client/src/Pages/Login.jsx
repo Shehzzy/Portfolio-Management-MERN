@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import './loginpage.css';
+import '../assets/loginpage.css';
+
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,40 +36,44 @@ function Login() {
 
   return (
     <>
-
-      <div className="container-fluid d-flex justify-content-center align-items-center mt-5 p-5">
-        <div className="login-box p-5">
-        <h3 className="text-center">Login and start exploring!</h3>
-          <form onSubmit={handleLogin} className="mt-3 d-flex flex-column text-start justify-content-center align-items-center">
-            <div className="login-group">
-              <label>Email</label>
-              <br />
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="login-group">
-              <label>Password</label>
-              <br />
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="login-group">
-              <input type="submit" value="Login" className="mt-3" />
-            </div>
-          {error && <p className="login-error mt-3">{error}</p>}
-          </form>
-
+<div className="main">
+      <div className="container-fluid d-flex justify-content-center align-items-center p-5">
+        <div className="row roww">
+          <div className="col-lg-6 col-md-6 col-sm-12 login-box p-5">
+            <h3 className="text-center">Login and start exploring!</h3>
+            <form onSubmit={handleLogin} className="mt-3 d-flex flex-column text-start justify-content-center align-items-center">
+              <div className="login-group">
+                <label>Email</label>
+                <br />
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="login-group">
+                <label>Password</label>
+                <br />
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="login-group btn">
+                <input type="submit" value="Login" className="mt-3" />
+              </div>
+              {error && <p className="login-error mt-3">{error}</p>}
+            </form>
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-12 login-2">
+          </div>
         </div>
+      </div>
       </div>
     </>
   );
