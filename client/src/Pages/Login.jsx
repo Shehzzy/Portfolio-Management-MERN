@@ -38,7 +38,7 @@ function Login() {
     <>
 <div className="main">
       <div className="container-fluid d-flex justify-content-center align-items-center p-5">
-        <div className="row roww">
+        <div className="row roww mt-5">
           <div className="col-lg-6 col-md-6 col-sm-12 login-box p-5">
             <h3 className="text-center">Login and start exploring!</h3>
             <form onSubmit={handleLogin} className="mt-3 d-flex flex-column text-start justify-content-center align-items-center">
