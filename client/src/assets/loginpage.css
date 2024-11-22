@@ -9,7 +9,7 @@
     height:100vh;
 }
 
-h3 {
+.login-h3 {
     color: mediumslateblue;
     font-weight: bold;
 }
