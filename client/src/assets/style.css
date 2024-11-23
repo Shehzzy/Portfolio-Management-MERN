@@ -1,11 +1,11 @@
-body {
-    margin-left: 280px; /* Push content to the right */
+.main-body {
+    margin-left: 280px;
 }
-.homepage-h3{
+/* .homepage-h3{
     color: #A64D79;
     line-height: 1.5;
     font-weight: bold;
-}
+} */
 
 .sidebar {
     background-color: #1A1A1D;
@@ -40,6 +40,17 @@ body {
     color: #A64D79;
 }
 
+.profile-card{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),  url('pexels-stephen-alicia-1315397-3022942.jpg');
+    background-position: center;
+    background-size: cover;
+    height:150px;
+    color: #fff;
+    line-height: 1.5;
+    font-weight: bold;
+    /* filter: brightness(50%); */
+    text-align: center;
+}
 .img-icon{
     height: 30px;
     width: 30px;

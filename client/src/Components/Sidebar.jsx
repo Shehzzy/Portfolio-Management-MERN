@@ -6,7 +6,7 @@ function Sidebar() {
       <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         {/* Replace SVG with an icon */}
         <i className="bi bi-house-door me-2" style={{ fontSize: '32px' }}></i>
-        <span className="fs-4">Sidebar</span>
+        <span className="fs-4">Trackfolio</span>
       </a>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">

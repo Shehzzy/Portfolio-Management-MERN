@@ -36,7 +36,7 @@ function Login() {
 
   return (
     <>
-<div className="main">
+<div className="main container-fluid d-flex justify-content-center align-items-center">
       <div className="container-fluid d-flex justify-content-center align-items-center p-5">
         <div className="row roww mt-5">
           <div className="col-lg-6 col-md-6 col-sm-12 login-box p-5">
