@@ -17,7 +17,7 @@ app.use(cors({
 
 
 app.use("/api/auth", authRouter);
-app.use("api/projects", projectRouter);
+app.use("/api/projects", projectRouter);
 
 
 app.listen(process.env.PORT, () => {

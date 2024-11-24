@@ -1,5 +1,5 @@
 const axios = require('axios');
-const ProjectModel = require('../models/ProjectModel');
+const ProjectModel = require('../models/ProjectModel.js');
 
 
 // Global variables to use 
@@ -28,6 +28,7 @@ const uploadImageToImgBB = async (imagePath) => {
 // Create project API
 const CreateProject = async (req, res) => {
     try {
+        debugger;
         let coverUrl = req.body.cover ? await uploadImageToImgBB(req.body.cover) : null;
         let screenshotUrl = req.body.screenshot ? await uploadImageToImgBB(req.body.screenshot) : null;
 

@@ -16,9 +16,7 @@ function Home() {
       <Navbar />
       <Sidebar />
 
-      {/* Cards  */}
       <div className='main-body'>
-
         <div className="container-fluid p-5">
           <div className='row'>
             <div className='col-lg-12 col-md-12 col-sm-12'>
@@ -39,10 +37,10 @@ function Home() {
                   <li>Laravel Developer |</li>
                   <li>Flutter Developer |</li>
                   <li>Full Stack Developer</li>
-                 </ul>
-                 <p>Student - Aptech Metro Stargate</p>
-                 <p>Karachi, Pakistan</p>
-                 <p className="text-capitalize">A project for managing my portfolio projects.</p>
+                </ul>
+                <p>Student - Aptech Metro Stargate</p>
+                <p>Karachi, Pakistan</p>
+                <p className="text-capitalize">A project for managing my portfolio projects.</p>
               </div>
             </div>
           </div>

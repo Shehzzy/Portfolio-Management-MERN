@@ -4,6 +4,7 @@ import LoginPage from './Pages/Login';
 import ProfilePage from './Pages/ProfilePage';
 import AdminPage from './Pages/AdminPage';
 import Home from './Pages/Home';
+import NewProject from './Pages/NewProject';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/" element={<Home />} />
+          <Route path="/create-a-new-project" element={<NewProject />} />
         </Routes>
       </div>
     </Router>

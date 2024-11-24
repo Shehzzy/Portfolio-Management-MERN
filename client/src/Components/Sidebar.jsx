@@ -1,48 +1,64 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 function Sidebar() {
   return (
-    <div className="d-flex flex-column flex-shrink-0 p-3 text-white sidebar" style={{ width: '280px', height:'100vh'}}>
-      <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <div className="d-flex flex-column flex-shrink-0 p-3 text-white sidebar" style={{ width: '280px', height: '100vh' }}>
+      <Link to="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         {/* Replace SVG with an icon */}
         <i className="bi bi-house-door me-2" style={{ fontSize: '32px' }}></i>
         <span className="fs-4">Trackfolio</span>
-      </a>
+      </Link>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
-          <a href="#" className="nav-link text-white" aria-current="page">
+          <Link to="/" className="nav-link text-white" aria-current="page">
             <i className="bi bi-house-door me-2"></i>
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="nav-link text-white">
+          <Link to="/create-a-new-project" className="nav-link text-white">
+            <i className="bi bi-table me-2"></i>
+            Create A New Project
+          </Link>
+        </li>
+        <li>
+          <Link to="/" className="nav-link text-white">
             <i className="bi bi-tachometer-alt me-2"></i>
-            Dashboard
-          </a>
+            Explore All projects
+          </Link>
         </li>
+
         <li>
-          <a href="#" className="nav-link text-white">
+          <Link to="/" className="nav-link text-white">
+            <i className="bi bi-tachometer-alt me-2"></i>
+            Explore Active projects
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/" className="nav-link text-white">
+            <i className="bi bi-tachometer-alt me-2"></i>
+            Explore In-Active projects
+          </Link>
+        </li>
+
+
+        <li>
+          <Link to="/" className="nav-link text-white">
             <i className="bi bi-table me-2"></i>
             Orders
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="nav-link text-white">
-            <i className="bi bi-grid me-2"></i>
-            Products
-          </a>
-        </li>
-        <li>
-          <a href="#" className="nav-link text-white">
-            <i className="bi bi-person-circle me-2"></i>
-            Customers
-          </a>
+          <Link to="/" className="nav-link text-white">
+            <i className="bi bi-table me-2"></i>
+            Orders
+          </Link>
         </li>
       </ul>
       <hr />
-      <div className="dropdown">
+      {/* <div className="dropdown">
         <a
           href="#"
           className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
@@ -84,7 +100,7 @@ function Sidebar() {
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 }
