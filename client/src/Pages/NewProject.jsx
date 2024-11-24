@@ -9,7 +9,7 @@ function NewProject() {
     const navigate = useNavigate();
     const token = localStorage.getItem("jwt_token");
     if (!token) { navigate("/login"); }
-    
+
     const [formData, setFormData] = useState({
         category: '',
         cover: null, // File input for cover image
@@ -43,32 +43,28 @@ function NewProject() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         const formPayload = new FormData();
-    
+
         // Append all fields into FormData
         for (const key in formData) {
             if (formData.hasOwnProperty(key)) {
-                // Check if the value is a file (cover or screenshot)
                 if (key === 'cover' || key === 'screenshot') {
-                    // Append the image files separately
-                    if (formData[key]) { // Ensure a file is selected
+                    if (formData[key]) {
                         formPayload.append(key, formData[key]);
                     }
                 } else {
-                    // Append text fields, make sure the value is not undefined
-                    if (formData[key] !== undefined) {
-                        console.log(`Appending ${key}: ${formData[key]}`);  // Debugging line
-                        formPayload.append(key, formData[key]);
-                    }
+                    formPayload.append(key, formData[key]);
                 }
             }
         }
-    
+
         try {
-            // Send project data to the backend using FormData
             const response = await axios.post('http://localhost:3000/api/projects/createproject', formPayload, {
-                headers: {  Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
+                },
             });
             alert('Project added successfully!');
         } catch (error) {
@@ -76,7 +72,7 @@ function NewProject() {
             alert('Error adding project.');
         }
     };
-    
+
     return (
         <>
             <Navbar />
