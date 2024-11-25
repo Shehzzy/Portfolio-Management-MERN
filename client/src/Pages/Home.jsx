@@ -1,6 +1,6 @@
-import React from 'react'
-import Navbar from '../Components/Navbar'
-import Sidebar from '../Components/Sidebar'
+import React, { useState, useEffect } from 'react';
+import Navbar from '../Components/Navbar';
+import Sidebar from '../Components/Sidebar';
 import '../assets/style.css';
 import FlashOn from '../assets/flash.png';
 import FlashOff from '../assets/flash_off.png';
@@ -8,14 +8,57 @@ import User from '../assets/user.png';
 import Work from '../assets/work.png';
 import Footer from '../Components/Footer';
 import ProjectCards from '../Components/ProjectCards';
-
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Home() {
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true); // Added loading state
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const token = localStorage.getItem("jwt_token");
+      if (!token) {
+        // Redirect to login if token is missing
+        navigate("/login");
+        return;
+      }
+
+      try {
+        const response = await axios.get("http://localhost:3000/api/auth/user", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setUser(response.data);
+        console.log('User data response:', response.data);
+      } catch (err) {
+        console.error('Error fetching user data:', err.response?.data || err.message);
+        setError("You are not authorized to view this page");
+        navigate("/login");
+      } finally {
+        setLoading(false); // Set loading to false after fetching
+      }
+    };
+
+    getUserData();
+  }, [navigate]);
+
+  // If loading, show a loading state or a spinner
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  // If no user, redirect to login page
+  if (!user) {
+    navigate("/login");
+    return null; // Return nothing while redirecting
+  }
+
   return (
     <>
       <Navbar />
       <Sidebar />
-
       <div className='main-body'>
         <div className="container-fluid p-5">
           <div className='row'>
@@ -32,7 +75,7 @@ function Home() {
                 <div className='card-logo d-flex justify-content-center align-items-center'>
                   <img src={User} />
                 </div>
-                <h3 className='homepage-h3 mt-2'>Aban Ali</h3>
+                <h3 className='homepage-h3 mt-2'>{user.userData.name}</h3>
                 <ul>
                   <li>Laravel Developer |</li>
                   <li>Flutter Developer |</li>
@@ -49,15 +92,12 @@ function Home() {
             <ProjectCards imgSrc={FlashOn} projectHeading={"Active Projects"} projectNumbers={0} />
             <ProjectCards imgSrc={FlashOff} projectHeading={"In-Active Projects"} projectNumbers={0} />
             <ProjectCards imgSrc={Work} projectHeading={"All Projects"} projectNumbers={0} />
-
-
           </div>
-
         </div>
       </div>
       <Footer />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

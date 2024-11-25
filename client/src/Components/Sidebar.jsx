@@ -23,7 +23,7 @@ function Sidebar() {
           </Link>
         </li>
         <li>
-          <Link to="/" className="nav-link text-white">
+          <Link to="/all-projects" className="nav-link text-white">
             <i className="bi bi-tachometer-alt me-2"></i>
             Explore All projects
           </Link>
