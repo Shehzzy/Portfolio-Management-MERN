@@ -264,7 +264,7 @@ function NewProject() {
                 onChange={() =>
                   setFormData((prev) => ({
                     ...prev,
-                    status: prev.status === "Active" ? "Inactive" : "Active",
+                    status: prev.status === "Active" ? "In-Active" : "Active",
                   }))
                 }
               />

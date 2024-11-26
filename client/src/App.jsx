@@ -6,6 +6,8 @@ import AdminPage from './Pages/AdminPage';
 import Home from './Pages/Home';
 import NewProject from './Pages/NewProject';
 import AllProjects from './Pages/AllProjects';
+import ActiveProjects from './Pages/ActiveProjects';
+import InactiveProjects from './Pages/InactiveProjects';
 
 function App() {
   return (
@@ -18,6 +20,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create-a-new-project" element={<NewProject />} />
           <Route path="/all-projects" element={<AllProjects />} />
+          <Route path="/active-projects" element={<ActiveProjects />} />
+          <Route path="/inactive-projects" element={<InactiveProjects />} />
+
+
 
         </Routes>
       </div>

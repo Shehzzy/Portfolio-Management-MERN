@@ -147,7 +147,7 @@ const getActiveProjects = async (req, res) => {
         if (!projects || projects.length === 0) {
             return res.json({ message: "No active projects found" });
         }
-        return res.json({ message: "Here are the active projects", projects });
+        return res.json({ message: "Here are the active projects", projectData: projects });
     } catch (error) {
         return res.status(500).json({ message: "Server error", error });
     }
@@ -158,9 +158,9 @@ const getInactiveProjects = async (req, res) => {
     try {
         const inactiveProjects = await ProjectModel.find({ status: inactiveStatus });
         if (!inactiveProjects || inactiveProjects.length === 0) {
-            return res.json({ message: "No inactive projects found", projects: inactiveProjects });
+            return res.json({ message: "No inactive projects found", projectData: inactiveProjects });
         }
-        return res.json({ message: "Here are the inactive projects", projects: inactiveProjects });
+        return res.json({ message: "Here are the inactive projects", projectData: inactiveProjects });
     } catch (error) {
         return res.status(500).json({ message: "Server error", error });
     }
