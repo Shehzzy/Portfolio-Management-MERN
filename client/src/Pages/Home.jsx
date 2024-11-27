@@ -12,14 +12,46 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Home() {
+  const [countAll, setCountAll] = useState(0);
+  const [countActive, setCountActive] = useState(0);
+  const [countInActive, setCountInactive] = useState(0);
+
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true); // Added loading state
   const navigate = useNavigate();
+  const token = localStorage.getItem("jwt_token");
+
+
+// fetch all count api 
+  const getCountAllProjects = async () => {
+    const resp = await axios.get("http://localhost:3000/api/projects/countallprojects", {
+      headers:{Authorization: `Bearer ${token}`}
+    });
+
+    setCountAll(resp.data);
+  }
+
+  // fetch active count api 
+  const getCountActiveProjects = async () => {
+    const resp = await axios.get("http://localhost:3000/api/projects/countactiveprojects", {
+      headers:{Authorization: `Bearer ${token}`}
+    });
+
+    setCountActive(resp.data);
+  }
+
+  // fetch inactive count api 
+  const getCountInActiveProjects = async () => {
+    const resp = await axios.get("http://localhost:3000/api/projects/countinactiveprojects", {
+      headers:{Authorization: `Bearer ${token}`}
+    });
+
+    setCountInactive(resp.data);
+  }
 
   useEffect(() => {
     const getUserData = async () => {
-      const token = localStorage.getItem("jwt_token");
       if (!token) {
         // Redirect to login if token is missing
         navigate("/login");
@@ -41,7 +73,12 @@ function Home() {
       }
     };
 
+
+
     getUserData();
+    getCountAllProjects();
+    getCountActiveProjects();
+    getCountInActiveProjects();
   }, [navigate]);
 
   // If loading, show a loading state or a spinner
@@ -89,9 +126,9 @@ function Home() {
           </div>
 
           <div className="row mt-3">
-            <ProjectCards imgSrc={FlashOn} projectHeading={"Active Projects"} projectNumbers={0} />
-            <ProjectCards imgSrc={FlashOff} projectHeading={"In-Active Projects"} projectNumbers={0} />
-            <ProjectCards imgSrc={Work} projectHeading={"All Projects"} projectNumbers={0} />
+            <ProjectCards imgSrc={FlashOn} projectHeading={"Active Projects"} projectNumbers={countActive.count} />
+            <ProjectCards imgSrc={FlashOff} projectHeading={"In-Active Projects"} projectNumbers={countInActive.count} />
+            <ProjectCards imgSrc={Work} projectHeading={"All Projects"} projectNumbers={countAll.count} />
           </div>
         </div>
       </div>

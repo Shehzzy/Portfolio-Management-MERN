@@ -30,6 +30,11 @@ router.put("/deactivateproject/:id", authenticateJWT, projectController.deactiva
 router.get("/activeprojects", authenticateJWT, projectController.getActiveProjects);
 router.get("/inactiveprojects", authenticateJWT, projectController.getInactiveProjects);
 router.delete("/deleteproject/:id", authenticateJWT, projectController.deleteProject);
+router.get("/countallprojects", authenticateJWT, projectController.countAllProjects);
+router.get("/countactiveprojects", authenticateJWT, projectController.countActiveProjects);
+router.get("/countinactiveprojects", authenticateJWT, projectController.countInActiveProjects);
+
+
 
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from 'sweetalert2';
 import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
 import Footer from "../Components/Footer";
@@ -74,7 +75,14 @@ function NewProject() {
           },
         }
       );
-      alert("Project added successfully!");
+      // alert("Project added successfully!"); 
+      // add sweet alert whenever a function is getting performed
+      Swal.fire({
+        title: "Project added successfully!",
+        text: "Wow! You're pretty good at this!",
+        icon: "success"
+      });
+      navigate("/all-projects");
     } catch (error) {
       console.error("Error adding project:", error);
       alert("Error adding project.");
@@ -269,7 +277,7 @@ function NewProject() {
                 }
               />
               <label className="form-check-label" htmlFor="status">
-                Active Status
+                Is this Project Active?
               </label>
             </div>
 

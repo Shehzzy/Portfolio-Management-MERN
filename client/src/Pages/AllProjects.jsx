@@ -87,46 +87,56 @@ function AllProjects() {
           {/* Display error if there's any */}
           {error && <div className="alert alert-danger">{error}</div>}
 
-          <div className="mb-5 mt-3 d-flex justify-content-between">
-            <div>
-              <button
-                className="btn btn-primary mx-2"
-                onClick={() => setCardLayout((prev) => (prev === "table-layout" ? "card-layout" : "table-layout"))}
-              >
-                {cardLayout === "table-layout" ? 'Show In Card Layout Form' : 'Show In Table Layout Form'}
-              </button>
-            </div>
+          {/* Show buttons if there's any data available */}
+          {projects.length != 0 ? (
+            <div className="mb-5 mt-3 d-flex justify-content-between">
+              <div>
+                <button
+                  className="btn btn-primary mx-2"
+                  onClick={() =>
+                    setCardLayout((prev) =>
+                      prev === "table-layout" ? "card-layout" : "table-layout"
+                    )
+                  }
+                >
+                  {cardLayout === "table-layout"
+                    ? "Show In Card Layout Form"
+                    : "Show In Table Layout Form"}
+                </button>
+              </div>
 
-            {/* Filter buttons or dropdown */}
-            <div>
-              <button
-                className="btn btn-warning text-white mx-2"
-                onClick={() => setFilter("all")}
-              >
-                All Projects
-              </button>
-              <button
-                className="btn btn-success mx-2"
-                onClick={() => setFilter("active")}
-              >
-                Active Projects
-              </button>
-              <button
-                className="btn btn-danger mx-2"
-                onClick={() => setFilter("inactive")}
-              >
-                Inactive Projects
-              </button>
+              {/* Filter buttons or dropdown */}
+              <div>
+                <button
+                  className="btn btn-warning text-white mx-2"
+                  onClick={() => setFilter("all")}
+                >
+                  All Projects
+                </button>
+                <button
+                  className="btn btn-success mx-2"
+                  onClick={() => setFilter("active")}
+                >
+                  Active Projects
+                </button>
+                <button
+                  className="btn btn-danger mx-2"
+                  onClick={() => setFilter("inactive")}
+                >
+                  Inactive Projects
+                </button>
+              </div>
             </div>
-          </div>
+          ) : (
+            ""
+          )}
 
           {cardLayout === "table-layout" ? (
             <ProjectTable tableData={projects} />
           ) : (
-        <div className="row mt-3">
-        <MainProjectCards cardData={projects} />
-        </div>
-          
+            <div className="row mt-3">
+              <MainProjectCards cardData={projects} />
+            </div>
           )}
         </div>
       </div>

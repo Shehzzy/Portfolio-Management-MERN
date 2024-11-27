@@ -1,11 +1,11 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .main-body {
-    margin-left: 280px;
+  margin-left: 280px;
 }
 
 /* .homepage-h3{
@@ -15,105 +15,118 @@
 } */
 
 .sidebar {
-    background-color: #1A1A1D;
-    position: fixed;
-    /* Fix sidebar in place */
-    top: 0;
-    left: 0;
-    width: 280px;
-    height: 100vh;
-    z-index: 10;
-    /* Sidebar in front */
+  background-color: #1a1a1d;
+  position: fixed;
+  /* Fix sidebar in place */
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  z-index: 10;
+  /* Sidebar in front */
 }
 
 .nb-brand {
-    color: white;
-    font-size: 30px;
-    transition-duration: 2px;
+  color: white;
+  font-size: 30px;
+  transition-duration: 2px;
 }
 
 .nb {
-    background-color: #3B1C32;
-    height: 80px;
-    font-size: 20px;
-    padding-right: 20px;
-    position: relative;
-    /* Ensure it's behind the sidebar */
-    z-index: 5;
-    /* Navbar behind sidebar */
+  background-color: #3b1c32;
+  height: 80px;
+  font-size: 20px;
+  padding-right: 20px;
+  position: relative;
+  /* Ensure it's behind the sidebar */
+  z-index: 5;
+  /* Navbar behind sidebar */
 }
 
 .nb li a {
-    color: white;
+  color: white;
 }
 
 .nb li a:hover,
 .nb-brand:hover {
-    color: #A64D79;
+  color: #a64d79;
 }
 
 .profile-card {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('pexels-stephen-alicia-1315397-3022942.jpg');
-    background-position: center;
-    background-size: cover;
-    height: 150px;
-    color: #fff;
-    line-height: 1.5;
-    font-weight: bold;
-    /* filter: brightness(50%); */
-    text-align: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("pexels-stephen-alicia-1315397-3022942.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 150px;
+  color: #fff;
+  line-height: 1.5;
+  font-weight: bold;
+  /* filter: brightness(50%); */
+  text-align: center;
 }
 
 .profile-card-2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('miya.jpg');
-    background-position: center;
-    background-size: cover;
-    height: auto;
-    color: #fff;
-    line-height: 1.5;
-    text-align: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("miya.jpg");
+  background-position: center;
+  background-size: cover;
+  height: auto;
+  color: #fff;
+  line-height: 1.5;
+  text-align: center;
 }
 
-
-
 .profile-card-2 .card-logo img {
-    height: 100px;
-    width: 100px;
-    border-radius: 100px;
-    object-fit: cover;
-    margin-top: -40px;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  object-fit: cover;
+  margin-top: -40px;
 }
 
 .profile-card-2 ul li {
-    font-weight: bold;
-    display: inline;
-    padding-left: 10px;
+  font-weight: bold;
+  display: inline;
+  padding-left: 10px;
 }
 
 .profile-card-2 p {
-    line-height: 0.9;
+  line-height: 0.9;
 }
-
 
 .img-icon {
-    height: 30px;
-    width: 30px;
+  height: 30px;
+  width: 30px;
 }
 
-.new-project-h2{
-    color: #A64D79;
-    text-align: center;
-    font-weight: bold;
+.new-project-h2 {
+  color: #a64d79;
+  text-align: center;
+  font-weight: bold;
 }
 
+.btn-primary {
+  background-color: #a64d79;
+  border: #a64d79;
+}
+.btn-primary:hover {
+  background-color: #fff;
+  color: #a64d79;
+  font-weight: bold;
+  border: 3px solid #a64d79;
+}
+
+.btn-primary::selection{
+    background-color: purple;
+}
 footer {
-    background-color: #3B1C32;
-    height: 80px;
-    position: relative;
-    /* Ensure it's behind the sidebar */
-    z-index: 5;
-    /* Footer behind sidebar */
-    width: 100%;
-    bottom: 0;
-    color: white;
+  background-color: #3b1c32;
+  height: 80px;
+  position: relative;
+  /* Ensure it's behind the sidebar */
+  z-index: 5;
+  /* Footer behind sidebar */
+  width: 100%;
+  bottom: 0;
+  color: white;
 }

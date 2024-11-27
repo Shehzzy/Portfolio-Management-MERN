@@ -1,6 +1,8 @@
 import React from 'react'
+import ErrorData from './ErrorData'
 
 function ProjectTable({tableData}) {
+ if(tableData.length == 0){return <ErrorData />;}
   return (
     <>
           <table className="table table-hover mt-3">

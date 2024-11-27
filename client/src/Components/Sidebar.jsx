@@ -42,20 +42,6 @@ function Sidebar() {
             Explore In-Active projects
           </Link>
         </li>
-
-
-        <li>
-          <Link to="/" className="nav-link text-white">
-            <i className="bi bi-table me-2"></i>
-            Orders
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className="nav-link text-white">
-            <i className="bi bi-table me-2"></i>
-            Orders
-          </Link>
-        </li>
       </ul>
       <hr />
     </div>
