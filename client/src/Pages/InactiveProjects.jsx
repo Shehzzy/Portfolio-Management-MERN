@@ -80,7 +80,7 @@ function InactiveProjects() {
 
           {/*TABLE COMPONENT*/}
 
-          <ProjectTable tableData={projects} />
+          <ProjectTable tableData={projects} allProjectsPage={false} />
         </div>
       </div>
       <Footer />

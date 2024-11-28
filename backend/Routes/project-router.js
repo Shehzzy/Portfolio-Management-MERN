@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/'); // Store files in 'uploads' folder
     },
-    filename: (req, file, cb) => {
+    filename: (req, file, cb) => {      
         // Use the original file extension based on the MIME type
         const fileExtension = path.extname(file.originalname) || '.jpg'; // Default to .jpg if no extension
         cb(null, Date.now() + '-' + file.fieldname + fileExtension); // Name the file with a unique timestamp and original extension

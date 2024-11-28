@@ -78,7 +78,7 @@ function ActiveProjects() {
           {error && <div className="alert alert-danger">{error}</div>}
 
           {/* Table component */}
-          <ProjectTable tableData={projects} />
+          <ProjectTable tableData={projects} allProjectsPage={false} />
         </div>
       </div>
       <Footer />

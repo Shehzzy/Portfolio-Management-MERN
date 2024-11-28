@@ -132,7 +132,7 @@ function AllProjects() {
           )}
 
           {cardLayout === "table-layout" ? (
-            <ProjectTable tableData={projects} />
+            <ProjectTable tableData={projects} allProjectsPage={true}/>
           ) : (
             <div className="row mt-3">
               <MainProjectCards cardData={projects} />
