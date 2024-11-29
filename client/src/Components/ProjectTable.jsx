@@ -1,8 +1,58 @@
-import React from 'react'
-import ErrorData from './ErrorData'
+import React from 'react';
+import ErrorData from './ErrorData';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function ProjectTable({ tableData, allProjectsPage }) {
-  if (tableData.length == 0) { return <ErrorData />; }
+  const token = localStorage.getItem("jwt_token");
+
+  // If no data is available, show error component
+  if (tableData.length === 0) {
+    return <ErrorData />;
+  }
+
+  // Function for activating the project
+  const activateProject = async (projectId) => {
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+    try {
+      let apiUrl = "http://localhost:3000/api/projects/activateproject";
+      const response = await axios.put(
+        `${apiUrl}/${projectId}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response) {
+        console.log("This project has been activated.");
+      }
+    } catch (error) {
+      console.log("Server error", error);
+    }
+  };
+
+  // Function for deactivating the project
+  const deactivateProject = async (projectId) => {
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+    try {
+      let apiUrl = "http://localhost:3000/api/projects/deactivateproject";
+      const response = await axios.put(
+        `${apiUrl}/${projectId}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response) {
+        console.log("This project has been deactivated.");
+      }
+    } catch (error) {
+      console.log("Server error", error);
+    }
+  };
+
   return (
     <>
       <table className="table table-hover mt-3">
@@ -15,6 +65,7 @@ function ProjectTable({ tableData, allProjectsPage }) {
             <th scope="col">Project Type</th>
             <th scope="col">Features</th>
             <th scope="col">Status</th>
+            {allProjectsPage === false && <th scope="col">Actions</th>}
           </tr>
         </thead>
         <tbody>
@@ -35,13 +86,30 @@ function ProjectTable({ tableData, allProjectsPage }) {
               >
                 {project.status}
               </td>
-              {allProjectsPage == false ? (<td><button className='btn btn-primary'>{project.status != "Active" ? "Activate" : "Deactivate"}</button></td>) : ""}
+              {allProjectsPage === false && (
+                <td>
+                  <button
+                    onClick={
+                      project.status !== "Active"
+                        ? () => activateProject(project._id)
+                        : () => deactivateProject(project._id)
+                    }
+                    className="btn btn-primary"
+                  >
+                    {project.status !== "Active" ? "Activate" : "Deactivate"}
+                  </button>
+                </td>
+              )}
+
+              {allProjectsPage === true && (
+                <td><Link to={`/edit-project/${project._id}`} className='btn btn-primary'>Update</Link></td>
+              )}
             </tr>
           ))}
         </tbody>
       </table>
     </>
-  )
+  );
 }
 
-export default ProjectTable
+export default ProjectTable;

@@ -235,43 +235,57 @@ const deleteProject = async (req, res) => {
 // Count All Projects API
 
 const countAllProjects = async (req, res) => {
-    try {
-        const countAll = await ProjectModel.countDocuments();
-        console.log(countAll)
-        return res.status(200).json({message:"All projects count", count:countAll});
-        
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({message:"Server error", error:error});
-    }
+  try {
+    const countAll = await ProjectModel.countDocuments();
+    console.log(countAll)
+    return res.status(200).json({ message: "All projects count", count: countAll });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server error", error: error });
+  }
 }
 
 // Count Active Projects API
 
 const countActiveProjects = async (req, res) => {
-    try {
-        const countActive = await ProjectModel.countDocuments({status:activeStatus});
-        console.log(countActive)
-        return res.status(200).json({message:"All active projects count", count:countActive});
-        
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({message:"Server error", error:error});
-    }
+  try {
+    const countActive = await ProjectModel.countDocuments({ status: activeStatus });
+    console.log(countActive)
+    return res.status(200).json({ message: "All active projects count", count: countActive });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server error", error: error });
+  }
 }
 
 // Count Active Projects API
 
 const countInActiveProjects = async (req, res) => {
-    try {
-        const countInActive = await ProjectModel.countDocuments({status:inactiveStatus});
-        console.log(countInActive)
-        return res.status(200).json({message:"All inactive projects count", count:countInActive});
-        
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({message:"Server error", error:error});
+  try {
+    const countInActive = await ProjectModel.countDocuments({ status: inactiveStatus });
+    console.log(countInActive)
+    return res.status(200).json({ message: "All inactive projects count", count: countInActive });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server error", error: error });
+  }
+}
+
+const getSingleProject = async (req, res) => {
+  try {
+    const getProject = await ProjectModel.find({ _id: req.params.id });
+    if (!getProject) {
+      res.status(500).json({ message: "Project not found" });
     }
+
+    return res.status(200).json({ message: "Here are the project details", project: getProject });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+
+  }
 }
 
 
@@ -286,5 +300,6 @@ module.exports = {
   deleteProject,
   countAllProjects,
   countActiveProjects,
-  countInActiveProjects
+  countInActiveProjects,
+  getSingleProject
 };

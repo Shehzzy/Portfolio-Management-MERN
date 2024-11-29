@@ -24,6 +24,7 @@ const upload = multer({ storage: storage });
 router.post('/createproject', upload.fields([{ name: 'cover' }, { name: 'screenshot' }]), authenticateJWT, projectController.CreateProject);
 
 router.get("/projects", authenticateJWT, projectController.GetAllProjects);
+router.get("/getSingleProject/:id", authenticateJWT, projectController.getSingleProject);
 router.put("/updateproject/:id", authenticateJWT, projectController.updateSpecificProject);
 router.put("/activateproject/:id", authenticateJWT, projectController.activateSingleProject);
 router.put("/deactivateproject/:id", authenticateJWT, projectController.deactivateSingleProject);

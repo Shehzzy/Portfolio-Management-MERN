@@ -8,6 +8,7 @@ import NewProject from './Pages/NewProject';
 import AllProjects from './Pages/AllProjects';
 import ActiveProjects from './Pages/ActiveProjects';
 import InactiveProjects from './Pages/InactiveProjects';
+import EditProject from './Pages/EditProject';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/all-projects" element={<AllProjects />} />
           <Route path="/active-projects" element={<ActiveProjects />} />
           <Route path="/inactive-projects" element={<InactiveProjects />} />
+          <Route path="/edit-project/:id" element={<EditProject/>} />
+
 
 
 
