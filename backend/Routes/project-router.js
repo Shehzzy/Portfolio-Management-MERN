@@ -25,7 +25,7 @@ router.post('/createproject', upload.fields([{ name: 'cover' }, { name: 'screens
 
 router.get("/projects", authenticateJWT, projectController.GetAllProjects);
 router.get("/getSingleProject/:id", authenticateJWT, projectController.getSingleProject);
-router.put("/updateproject/:id", authenticateJWT, projectController.updateSpecificProject);
+router.put("/updateproject/:id" , upload.fields([{ name: 'cover' }, { name: 'screenshot' }]), authenticateJWT, projectController.updateSpecificProject);
 router.put("/activateproject/:id", authenticateJWT, projectController.activateSingleProject);
 router.put("/deactivateproject/:id", authenticateJWT, projectController.deactivateSingleProject);
 router.get("/activeprojects", authenticateJWT, projectController.getActiveProjects);

@@ -94,29 +94,36 @@ const GetAllProjects = async (req, res) => {
 // Update specific project API
 const updateSpecificProject = async (req, res) => {
   try {
+    console.log('Request body:', req.body);
+    console.log('Uploaded files:', req.files);
+
     let coverUrl =
       req.files && req.files.cover
-        ? await uploadImageToImgBB(req.files.cover[0].path)
-        : req.body.cover;
+        ? await uploadImageToImgBB(req.files.cover[0].path)  
+        : req.body.cover; 
+
     let screenshotUrl =
       req.files && req.files.screenshot
-        ? await uploadImageToImgBB(req.files.screenshot[0].path)
+        ? await uploadImageToImgBB(req.files.screenshot[0].path)  
         : req.body.screenshot;
-
     const updatedProject = await ProjectModel.findByIdAndUpdate(
       req.params.id,
-      { ...req.body, cover: coverUrl, screenshot: screenshotUrl },
-      { new: true }
+      { ...req.body, cover: coverUrl, screenshot: screenshotUrl }, // Update project with new data
+      { new: true }  // Return the updated document
     );
 
+    // Return the updated project as a response
     return res.json({
       message: "Project updated successfully",
       projectData: updatedProject,
     });
   } catch (error) {
+    // Log and return any errors
+    console.error('Error updating project:', error);
     return res.status(500).json({ message: "Update failed", error });
   }
 };
+
 
 // Activate Projects API
 const activateSingleProject = async (req, res) => {

@@ -7,7 +7,7 @@ import Sidebar from "../Components/Sidebar";
 import Footer from "../Components/Footer";
 
 function EditProject() {
-  const { projectId } = useParams(); // Get the project ID from the URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt_token");
 
@@ -20,8 +20,8 @@ function EditProject() {
 
   const [formData, setFormData] = useState({
     category: "",
-    cover: null, // File input for cover image
-    screenshot: null, // File input for screenshot image
+    cover: null, // cover should be initially null
+    screenshot: null, // screenshot should be initially null
     title: "",
     description: "",
     client: "",
@@ -29,7 +29,7 @@ function EditProject() {
     date: "",
     address: "",
     liveUrl: "",
-    features: "", // Features as a comma-separated string
+    features: "",
     status: "Active", // Default value for status
   });
 
@@ -38,14 +38,24 @@ function EditProject() {
     const fetchProject = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/projects/getSingleProject/${projectId}`,
+          `http://localhost:3000/api/projects/getSingleProject/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        setFormData(response.data); // Pre-fill the form with existing data
+        console.log("Fetched Project Data: ", response.data.project[0]);
+        // Check if the response is valid and populate formData correctly
+        if (response.data && response.data.project && response.data.project[0]) {
+          setFormData(response.data.project[0]); // Pre-fill the form with existing data
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to fetch project details.",
+            icon: "error",
+          });
+        }
       } catch (error) {
         console.error("Error fetching project:", error);
         Swal.fire({
@@ -57,21 +67,27 @@ function EditProject() {
     };
 
     fetchProject();
-  }, [projectId, token]);
+  }, [id, token]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
     if (files) {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: files[0], // Handle file inputs (cover/screenshot)
-      }));
+      setFormData((prevData) => {
+        console.log("File input changed: ", name, files[0]);
+        return {
+          ...prevData,
+          [name]: files[0], // Handle file inputs (cover/screenshot)
+        };
+      });
     } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value, // Handle text inputs
-      }));
+      setFormData((prevData) => {
+        console.log("Text input changed: ", name, value);
+        return {
+          ...prevData,
+          [name]: value, // Handle text inputs
+        };
+      });
     }
   };
 
@@ -86,21 +102,28 @@ function EditProject() {
         if (key === "cover" || key === "screenshot") {
           if (formData[key]) {
             formPayload.append(key, formData[key]); // Append files
+            console.log(`Appended ${key} with`, formData[key]);  // Debugging line
           }
         } else {
           formPayload.append(key, formData[key]); // Append text fields
+          console.log(`Appended ${key} with`, formData[key]);  // Debugging line
         }
       }
     }
 
+    // Log FormData contents (FormData doesn't directly log well, so we will use this trick)
+    for (let pair of formPayload.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/projects/updateproject/${projectId}`,
+        `http://localhost:3000/api/projects/updateproject/${id}`,
         formPayload,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "multipart/form-data", // Use multipart/form-data when sending files
           },
         }
       );
@@ -109,7 +132,7 @@ function EditProject() {
         text: "Great job! The project has been updated.",
         icon: "success",
       });
-      navigate(`/projects/${projectId}`); // Redirect to the updated project page
+      navigate("/all-projects"); // Redirect to the all projects page
     } catch (error) {
       console.error("Error updating project:", error);
       Swal.fire({
@@ -118,7 +141,7 @@ function EditProject() {
         icon: "error",
       });
     }
-  };
+};
 
   return (
     <>
@@ -170,6 +193,9 @@ function EditProject() {
                 id="cover"
                 onChange={handleChange}
               />
+              {formData.cover && typeof formData.cover === "string" && (
+                <div className="form-text">Current cover: {formData.cover}</div>
+              )}
             </div>
 
             {/* Screenshot Image */}
@@ -184,6 +210,9 @@ function EditProject() {
                 id="screenshot"
                 onChange={handleChange}
               />
+              {formData.screenshot && typeof formData.screenshot === "string" && (
+                <div className="form-text">Current screenshot: {formData.screenshot}</div>
+              )}
             </div>
 
             {/* Description */}
@@ -313,7 +342,7 @@ function EditProject() {
             </div>
 
             <button type="submit" className="btn btn-primary">
-              Save Changes
+              Update Project
             </button>
           </form>
         </div>

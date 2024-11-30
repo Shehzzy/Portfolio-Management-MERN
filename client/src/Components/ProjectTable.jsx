@@ -1,9 +1,16 @@
-import React from 'react';
-import ErrorData from './ErrorData';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React from "react";
+import ErrorData from "./ErrorData";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-function ProjectTable({ tableData, allProjectsPage }) {
+function ProjectTable({
+  tableData,
+  allProjectsPage,
+  activeProjectsPage,
+  inactiveProjectsPage,
+}) {
+  const navigate = useNavigate();
   const token = localStorage.getItem("jwt_token");
 
   // If no data is available, show error component
@@ -26,6 +33,12 @@ function ProjectTable({ tableData, allProjectsPage }) {
       );
       if (response) {
         console.log("This project has been activated.");
+        Swal.fire({
+          title: "Project activated successfully!",
+          text: "Redirecting to active projects page.",
+          icon: "success",
+        });
+        navigate("/active-projects");
       }
     } catch (error) {
       console.log("Server error", error);
@@ -47,6 +60,12 @@ function ProjectTable({ tableData, allProjectsPage }) {
       );
       if (response) {
         console.log("This project has been deactivated.");
+        Swal.fire({
+          title: "Project deactivated successfully!",
+          text: "Redirecting to inactive projects page.",
+          icon: "success",
+        });
+        navigate("/inactive-projects");
       }
     } catch (error) {
       console.log("Server error", error);
@@ -102,7 +121,14 @@ function ProjectTable({ tableData, allProjectsPage }) {
               )}
 
               {allProjectsPage === true && (
-                <td><Link to={`/edit-project/${project._id}`} className='btn btn-primary'>Update</Link></td>
+                <td>
+                  <Link
+                    to={`/edit-project/${project._id}`}
+                    className="btn btn-primary"
+                  >
+                    Update
+                  </Link>
+                </td>
               )}
             </tr>
           ))}
